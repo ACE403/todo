@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'todo.dart';
 import 'new_transaction.dart';
 import 'transaction_list.dart';
+import 'Signup.dart';
+import 'splash_screen.dart';
+import 'login.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'home.dart';
+import 'Auth.dart';
 
-void main() {
+Future main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -22,9 +30,11 @@ class MyApp extends StatelessWidget {
       // home: const MyHomePage(title: 'Flutter Demo Home Page'),
       initialRoute: '/',
       routes: {
-        '/': (ctx) => MyHomePage(),
-        // Signup.routename: (ctx) => Signup(),
-        // Login.routename: (ctx) => Login(),
+        '/': (ctx) => SplashScreen(),
+        Signup.routename: (ctx) => Signup(),
+        Login.routename: (ctx) => Login(),
+        home.routename: (ctx) => home(),
+        Auth.routename: (ctx) => Auth(),
       },
     );
   }
